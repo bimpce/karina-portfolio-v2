@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-black text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery — Karina</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='black'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='20' font-weight='bold' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+    
+    <!-- Google Fonts for premium wedding photography aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Pinyon+Script&family=Viaoda+Libre&display=swap" rel="stylesheet">
+    
+    <!-- Link to the central index css so Vite compiled classes carry over natively -->
+    <link rel="stylesheet" href="/src/index.css" />
+
+    <style>
+      /* Ensure direct fonts override */
+      .font-viaoda {
+        font-family: 'Viaoda Libre', serif;
+      }
+      .font-pinyon {
+        font-family: 'Pinyon Script', cursive;
+      }
+      .font-dmsans {
+        font-family: 'DM Sans', sans-serif;
+      }
+
+      /* High-end custom scrollbars matching the dark theme */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #222222;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #444444;
+      }
+
+      /* Masonry Layout styling using pure CSS columns for fluid presentation */
+      .masonry-grid {
+        column-count: 1;
+        column-gap: 2rem;
+      }
+      @media (min-width: 640px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+      @media (min-width: 1024px) {
+        .masonry-grid {
+          column-count: 3;
+        }
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 2rem;
+      }
+
+      /* Lightbox animations */
+      .lightbox-overlay {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .lightbox-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white selection:bg-white selection:text-black antialiased font-dmsans min-h-screen flex flex-col justify-between">
+    
+    <!-- NAVIGATION BAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent py-8 border-b border-transparent">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="font-viaoda text-2xl tracking-widest text-white hover:opacity-80 transition-opacity uppercase">
+          Karina
+        </a>
+
+        <!-- Desktop Navigation links match precisely with homepage specs -->
+        <div class="hidden md:flex space-x-12">
+          <a href="/" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-all duration-300 py-1">Home</a>
+          <a href="/gallery.html" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white transition-all duration-300 py-1 relative">
+            Gallery
+            <span class="absolute bottom-0 left-0 w-full h-[1px] bg-white"></span>
+          </a>
+          <a href="/about.html" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-all duration-300 py-1">About</a>
+          <a href="/contact.html" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-all duration-300 py-1">Contact</a>
+        </div>
+
+        <!-- Mobile Hamburguer Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden text-white hover:opacity-80 transition-opacity focus:outline-none cursor-pointer" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Drawer Panel (Full-screen overlay with smooth slide-in transition) -->
+      <div id="mobile-drawer" class="md:hidden fixed inset-0 bg-black z-45 flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform translate-x-full opacity-0 pointer-events-none">
+        <a href="/" class="font-viaoda text-3xl tracking-widest text-white/40 hover:text-white transition-colors uppercase">Home</a>
+        <a href="/gallery.html" class="font-viaoda text-3xl tracking-widest text-white hover:text-white transition-colors uppercase">Gallery</a>
+        <a href="/about.html" class="font-viaoda text-3xl tracking-widest text-white/40 hover:text-white transition-colors uppercase">About</a>
+        <a href="/contact.html" class="font-viaoda text-3xl tracking-widest text-white/40 hover:text-white transition-colors uppercase">Contact</a>
+      </div>
+    </nav>
+
+    <!-- CONTENT ARENA -->
+    <main class="flex-grow pt-44 md:pt-52 pb-24 md:pb-36 px-6 md:px-12">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Archive Header Section -->
+        <div class="text-center mb-16 select-none animate-fade-in-up">
+          <span class="font-dmsans text-[10px] tracking-[0.4em] text-white/40 uppercase block mb-4">
+            [ CAPTURED SILENCE ]
+          </span>
+          <h2 class="font-viaoda text-4xl md:text-5xl uppercase tracking-wider text-white">
+            Full Archive
+          </h2>
+          <p class="font-pinyon text-3xl md:text-4xl text-white/60 mt-2">
+            twelve moments of honest, desaturated sentiment
+          </p>
+        </div>
+
+        <!-- Masonry Grid showing 12 curated picsum placeholders (permanently desaturated to greyscale) -->
+        <div class="masonry-grid" id="masonry-gallery">
+          <!-- Item 1 -->
+          <div class="masonry-item group cursor-pointer" data-index="0">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1500?random=1" alt="Monochromatic Dream 1" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Whispered Vows</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.01</span>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="masonry-item group cursor-pointer" data-index="1">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1000?random=2" alt="Monochromatic Dream 2" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">The Lake Silhouette</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.02</span>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="masonry-item group cursor-pointer" data-index="2">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1300?random=3" alt="Monochromatic Dream 3" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Tulle & Stone</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.03</span>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="masonry-item group cursor-pointer" data-index="3">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1200?random=4" alt="Monochromatic Dream 4" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Eternal Corridor</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.04</span>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="masonry-item group cursor-pointer" data-index="4">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/800?random=5" alt="Monochromatic Dream 5" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">The Quiet Embrace</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.05</span>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="masonry-item group cursor-pointer" data-index="5">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1400?random=6" alt="Monochromatic Dream 6" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Cascading Lace</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.06</span>
+            </div>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="masonry-item group cursor-pointer" data-index="6">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1200?random=7" alt="Monochromatic Dream 7" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Ancestral Archways</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.07</span>
+            </div>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="masonry-item group cursor-pointer" data-index="7">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1000?random=8" alt="Monochromatic Dream 8" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Shared Twilight</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.08</span>
+            </div>
+          </div>
+
+          <!-- Item 9 -->
+          <div class="masonry-item group cursor-pointer" data-index="8">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1500?random=9" alt="Monochromatic Dream 9" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Solitude & Silk</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.09</span>
+            </div>
+          </div>
+
+          <!-- Item 10 -->
+          <div class="masonry-item group cursor-pointer" data-index="9">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1100?random=10" alt="Monochromatic Dream 10" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Fine Linen</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.10</span>
+            </div>
+          </div>
+
+          <!-- Item 11 -->
+          <div class="masonry-item group cursor-pointer" data-index="10">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1300?random=11" alt="Monochromatic Dream 11" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">The Grand Descent</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.11</span>
+            </div>
+          </div>
+
+          <!-- Item 12 -->
+          <div class="masonry-item group cursor-pointer" data-index="11">
+            <div class="overflow-hidden border border-white/10 group-hover:border-white/30 transition-all duration-500 bg-zinc-950">
+              <img src="https://picsum.photos/1000/1200?random=12" alt="Monochromatic Dream 12" class="w-full h-auto grayscale contrast-[1.12] brightness-90 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03] group-hover:brightness-100" />
+            </div>
+            <div class="mt-4 flex justify-between items-baseline px-1">
+              <h3 class="font-viaoda text-sm text-white/80 uppercase tracking-widest">Hand of Devotion</h3>
+              <span class="font-pinyon text-xl text-white/40">Studio.12</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-16 px-6 md:px-12 border-t border-white/5 select-none text-center">
+      <div class="max-w-7xl mx-auto flex flex-col items-center gap-6">
+        <div class="font-viaoda text-3xl tracking-widest text-white/95">K</div>
+        <div class="w-12 h-[1px] bg-white/10"></div>
+        <div class="flex flex-col md:flex-row justify-between w-full text-[10px] tracking-[0.2em] font-dmsans text-white/30 uppercase max-w-5xl gap-4">
+          <p>© 2026 Karina Wedding Photography. All Rights Reserved.</p>
+          <p>TIMELIGHT & SILENT SHUTTER PHILOSOPHY</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVE LIGHTBOX OVERLAY -->
+    <div id="lightbox" class="lightbox-overlay fixed inset-0 z-50 bg-black flex flex-col justify-between p-6 md:p-12 select-none">
+      <!-- Top header -->
+      <div class="flex justify-between items-center w-full z-10">
+        <div>
+          <span class="font-dmsans text-[9px] tracking-[0.25em] text-white/40 uppercase">Karina Photography Archive</span>
+          <p id="lightbox-title" class="font-viaoda text-lg text-white/80 tracking-wider md:block hidden mt-1">Image Title</p>
+        </div>
+        <button id="lightbox-close-btn" class="text-white/60 hover:text-white cursor-pointer border border-white/10 hover:border-white/30 p-2.5 transition-colors flex items-center justify-center focus:outline-none" aria-label="Close Lightbox">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Main Visual Arena -->
+      <div class="relative flex-1 flex items-center justify-center max-w-5xl mx-auto w-full py-4 my-2">
+        <!-- Prev Arrow -->
+        <button id="lightbox-prev-btn" class="absolute left-0 md:-left-16 z-10 text-white/40 hover:text-white p-3 cursor-pointer hover:bg-white/5 transition-colors focus:outline-none" aria-label="Previous Image">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <!-- Dynamic Image -->
+        <div class="w-full h-full flex items-center justify-center">
+          <img id="lightbox-img" src="" alt="" class="max-h-[70vh] max-w-full object-contain grayscale contrast-[1.12]" />
+        </div>
+
+        <!-- Next Arrow -->
+        <button id="lightbox-next-btn" class="absolute right-0 md:-right-16 z-10 text-white/40 hover:text-white p-3 cursor-pointer hover:bg-white/5 transition-colors focus:outline-none" aria-label="Next Image">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- Footer Specs -->
+      <div class="max-w-2xl mx-auto text-center z-10">
+        <span id="lightbox-category" class="font-pinyon text-3xl text-white/70 block mb-2 font-light">Desaturated Study</span>
+        <div class="flex justify-center gap-6 text-[10px] tracking-widest text-white/30 uppercase font-dmsans">
+          <span>Source: Picsum Placeholders</span>
+          <span>•</span>
+          <span>Desaturated Filter: 100% grayscale</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VANILLA JAVASCRIPT EXECUTING LIGHTBOX & DRAWER MOTIONS -->
+    <script>
+      // Dynamic Navbar scrolling behavior matching index.html/Navbar.tsx
+      const navbar = document.getElementById('navbar');
+      const handleScroll = () => {
+        if (window.scrollY > 50) {
+          navbar.classList.remove('bg-transparent', 'py-8', 'border-transparent');
+          navbar.classList.add('bg-black/95', 'border-white/5', 'py-4');
+        } else {
+          navbar.classList.remove('bg-black/95', 'border-white/5', 'py-4');
+          navbar.classList.add('bg-transparent', 'py-8', 'border-transparent');
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+
+      // Navigation drawer toggle for responsive mobile displays
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const drawer = document.getElementById('mobile-drawer');
+      let isDrawerOpen = false;
+
+      menuBtn.addEventListener('click', () => {
+        isDrawerOpen = !isDrawerOpen;
+        if (isDrawerOpen) {
+          drawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+          drawer.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          menuBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>`;
+        } else {
+          drawer.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          drawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+          menuBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>`;
+        }
+      });
+
+      // Staggered Scroll Reveal System for Masonry Gallery items
+      document.querySelectorAll('.masonry-item').forEach((item, idx) => {
+        item.classList.add('scroll-reveal');
+        // Apply staggered release delay
+        const delayOffset = (idx % 3) * 100;
+        if (delayOffset > 0) {
+          item.classList.add(`reveal-delay-${delayOffset}`);
+        }
+      });
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.1
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        revealObserver.observe(el);
+      });
+
+      // Lightbox operational core
+      const galleryItems = Array.from(document.querySelectorAll('.masonry-item'));
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxCategory = document.getElementById('lightbox-category');
+      const closeBtn = document.getElementById('lightbox-close-btn');
+      const prevBtn = document.getElementById('lightbox-prev-btn');
+      const nextBtn = document.getElementById('lightbox-next-btn');
+
+      let currentItemIndex = 0;
+
+      // Extract metadata catalog to serve descriptive texts with circular index navigation
+      const imageMetadata = galleryItems.map(item => {
+        const img = item.querySelector('img');
+        const heading = item.querySelector('h3');
+        const indexText = item.querySelector('.font-pinyon').textContent;
+        return {
+          url: img.src,
+          title: heading.textContent,
+          category: indexText
+        };
+      });
+
+      function openLightbox(index) {
+        currentItemIndex = index;
+        const currentData = imageMetadata[index];
+
+        // Assign visual fields
+        lightboxImg.src = currentData.url;
+        lightboxTitle.textContent = currentData.title;
+        lightboxCategory.textContent = currentData.title.toLowerCase();
+
+        lightbox.classList.add('active');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      function navigateLightbox(direction) {
+        // Safe circular module index navigation
+        currentItemIndex = (currentItemIndex + direction + imageMetadata.length) % imageMetadata.length;
+        
+        // Short subtle image transition fade
+        lightboxImg.style.opacity = '0';
+        setTimeout(() => {
+          const nextData = imageMetadata[currentItemIndex];
+          lightboxImg.src = nextData.url;
+          lightboxTitle.textContent = nextData.title;
+          lightboxCategory.textContent = nextData.title.toLowerCase();
+          lightboxImg.style.opacity = '1';
+        }, 120);
+      }
+
+      // Add item event listeners
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const index = parseInt(item.getAttribute('data-index'));
+          openLightbox(index);
+        });
+      });
+
+      // Overlay controllers
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', () => navigateLightbox(-1));
+      nextBtn.addEventListener('click', () => navigateLightbox(1));
+
+      // Key listening handles
+      window.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+      });
+
+      // Scroll to top button interactive controller
+      const scrollTopBtn = document.getElementById('scroll-to-top-btn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+          scrollTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        } else {
+          scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+          scrollTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        }
+      }, { passive: true });
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    </script>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top-btn" class="fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:bg-neutral-200 active:scale-95 hover:scale-105 transition-all duration-300 cursor-pointer border border-white/10 opacity-0 pointer-events-none translate-y-4" aria-label="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+  </body>
+</html>

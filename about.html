@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-black text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Karina</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='black'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='20' font-weight='bold' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+    
+    <!-- Google Fonts for premium wedding photography aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Pinyon+Script&family=Viaoda+Libre&display=swap" rel="stylesheet">
+    
+    <!-- Link to index css for Vite compilation -->
+    <link rel="stylesheet" href="/src/index.css" />
+
+    <style>
+      /* Font utility fallbacks */
+      .font-viaoda {
+        font-family: 'Viaoda Libre', serif;
+      }
+      .font-pinyon {
+        font-family: 'Pinyon Script', cursive;
+      }
+      .font-dmsans {
+        font-family: 'DM Sans', sans-serif;
+      }
+
+      /* Custom scrollbar to match the high-end minimalist theme */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #222222;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #444444;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white selection:bg-white selection:text-black antialiased font-dmsans min-h-screen flex flex-col justify-between">
+    
+    <!-- NAVIGATION BAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent py-8 border-b border-transparent">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="font-viaoda text-2xl tracking-widest text-white hover:opacity-80 transition-opacity uppercase">
+          Karina
+        </a>
+
+        <!-- Desktop Navigation links -->
+        <div class="hidden md:flex space-x-12">
+          <a href="/" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-all duration-300 py-1">Home</a>
+          <a href="/gallery.html" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-all duration-300 py-1">Gallery</a>
+          <a href="/about.html" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white transition-all duration-300 py-1 relative">
+            About
+            <span class="absolute bottom-0 left-0 w-full h-[1px] bg-white"></span>
+          </a>
+          <a href="/contact.html" class="font-dmsans text-xs tracking-[0.2em] uppercase text-white/50 hover:text-white transition-all duration-300 py-1">Contact</a>
+        </div>
+
+        <!-- Mobile Hamburguer Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden text-white hover:opacity-80 transition-opacity focus:outline-none cursor-pointer" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Drawer Panel (Full-screen overlay with smooth slide-in transition) -->
+      <div id="mobile-drawer" class="md:hidden fixed inset-0 bg-black z-45 flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform translate-x-full opacity-0 pointer-events-none">
+        <a href="/" class="font-viaoda text-3xl tracking-widest text-white/40 hover:text-white transition-colors uppercase">Home</a>
+        <a href="/gallery.html" class="font-viaoda text-3xl tracking-widest text-white/40 hover:text-white transition-colors uppercase">Gallery</a>
+        <a href="/about.html" class="font-viaoda text-3xl tracking-widest text-white hover:text-white transition-colors uppercase">About</a>
+        <a href="/contact.html" class="font-viaoda text-3xl tracking-widest text-white/40 hover:text-white transition-colors uppercase">Contact</a>
+      </div>
+    </nav>
+
+    <!-- CONTENT ARENA -->
+    <main class="flex-grow pt-44 md:pt-52 pb-24 px-6 md:px-12">
+      <div class="max-w-5xl mx-auto">
+        
+        <!-- About Section Header -->
+        <div class="text-center mb-16 md:mb-24 select-none animate-fade-in-up">
+          <span class="font-dmsans text-[10px] tracking-[0.4em] text-white/40 uppercase block mb-3">
+            [ BIOGRAPHY ]
+          </span>
+          <h1 class="font-viaoda text-4xl sm:text-5xl md:text-6xl uppercase tracking-wider text-white">
+            About Karina
+          </h1>
+          <p class="font-pinyon text-3xl md:text-4xl text-white/60 mt-2">
+            the eye behind the timeless frames
+          </p>
+        </div>
+
+        <!-- 2-Column Responsive Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center mb-24 md:mb-32 scroll-reveal">
+          
+          <!-- Column Left: Circular Headshot Placeholder (280px) -->
+          <div class="md:col-span-4 flex justify-center md:justify-start">
+            <div class="w-[280px] h-[280px] rounded-full overflow-hidden bg-zinc-950 border border-white/10 select-none">
+              <img 
+                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&h=600&q=80" 
+                alt="Karina Portrait" 
+                referrerpolicy="no-referrer"
+                class="w-full h-full object-cover grayscale brightness-90 contrast-[1.12] transition-all duration-700 hover:scale-105"
+              />
+            </div>
+          </div>
+
+          <!-- Column Right: Bio Text in DM Sans -->
+          <div class="md:col-span-8 text-white/80 space-y-8 font-dmsans font-light leading-relaxed text-sm sm:text-base">
+            <p>
+              My journey into wedding photography began with a simple appreciation for the unsaid. I found that color, while beautiful, often introduces a dynamic noise that shifts focus away from pure kinetic emotion. By committing strictly to deep monochrome silver-grain sensibilities, I peel back those layers to reveal the raw, honest architecture of devotion.
+            </p>
+            <p>
+              I take a deeply quiet, non-obtrusive approach to each commission. I do not direct, over-stage, or manufacture synthetic poses. Operating instead in the shadows with absolute focus, I wait patiently for the gentle breathing of anticipation, the quiet veil rippling in the wind, and the private squeezes of hands that form the genuine archive of your beautiful day.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Testimonial Section (Full Width, below the two columns) -->
+        <div class="text-center py-12 select-none scroll-reveal">
+          <div class="max-w-3xl mx-auto">
+            <span class="font-dmsans text-[9px] tracking-[0.3em] text-white/30 uppercase block mb-6">
+              [ A TESTAMENT ]
+            </span>
+            <blockquote class="font-pinyon text-4xl sm:text-5xl md:text-6xl text-white/90 leading-snug font-light mb-6">
+              "Karina has this incredible ability to capture the moments you didn't even notice happening. Looking through our frames felt like reading a love letter written in pure light and shadow."
+            </blockquote>
+            <cite class="font-dmsans text-[10px] tracking-[0.25em] text-white/50 uppercase not-italic block">
+              — Eleanor & Julian, Venice
+            </cite>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-16 px-6 md:px-12 border-t border-white/5 select-none text-center">
+      <div class="max-w-7xl mx-auto flex flex-col items-center gap-6">
+        <div class="font-viaoda text-3xl tracking-widest text-white/95">K</div>
+        <div class="w-12 h-[1px] bg-white/10"></div>
+        <div class="flex flex-col md:flex-row justify-between w-full text-[10px] tracking-[0.2em] font-dmsans text-white/30 uppercase max-w-5xl gap-4">
+          <p>© 2026 Karina Wedding Photography. All Rights Reserved.</p>
+          <p>TIMELIGHT & SILENT SHUTTER PHILOSOPHY</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MOBILE NAVIGATION JAVASCRIPT -->
+    <script>
+      // Dynamic Navbar scrolling behavior matching index.html/Navbar.tsx
+      const navbar = document.getElementById('navbar');
+      const handleScroll = () => {
+        if (window.scrollY > 50) {
+          navbar.classList.remove('bg-transparent', 'py-8', 'border-transparent');
+          navbar.classList.add('bg-black/95', 'border-white/5', 'py-4');
+        } else {
+          navbar.classList.remove('bg-black/95', 'border-white/5', 'py-4');
+          navbar.classList.add('bg-transparent', 'py-8', 'border-transparent');
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const drawer = document.getElementById('mobile-drawer');
+      let isDrawerOpen = false;
+
+      menuBtn.addEventListener('click', () => {
+        isDrawerOpen = !isDrawerOpen;
+        if (isDrawerOpen) {
+          drawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+          drawer.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          menuBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>`;
+        } else {
+          drawer.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          drawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+          menuBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>`;
+        }
+      });
+
+      // Scroll Reveal Intersection Observer for subtle, elegant reveal motions
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.1
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        revealObserver.observe(el);
+      });
+
+      // Scroll to top button interactive controller
+      const scrollTopBtn = document.getElementById('scroll-to-top-btn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+          scrollTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        } else {
+          scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+          scrollTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        }
+      }, { passive: true });
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    </script>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top-btn" class="fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:bg-neutral-200 active:scale-95 hover:scale-105 transition-all duration-300 cursor-pointer border border-white/10 opacity-0 pointer-events-none translate-y-4" aria-label="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+  </body>
+</html>

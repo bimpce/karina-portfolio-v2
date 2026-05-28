@@ -1,0 +1,6 @@
+{
+  "name": "Wedding Photographer Portfolio",
+  "description": "An elegant, minimalist black and white wedding photography portfolio for Karina",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
